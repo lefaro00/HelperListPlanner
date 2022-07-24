@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelperListPlanner", "HelperListPlanner\HelperListPlanner.csproj", "{D27EBCE3-DD02-44FB-B0EC-8883F9219669}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B2019ED4-826C-40DA-9375-32D4073E9B4E}"
+	ProjectSection(SolutionItems) = preProject
+		decisions.txt = decisions.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D27EBCE3-DD02-44FB-B0EC-8883F9219669}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D27EBCE3-DD02-44FB-B0EC-8883F9219669}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D27EBCE3-DD02-44FB-B0EC-8883F9219669}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D27EBCE3-DD02-44FB-B0EC-8883F9219669}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {741D271A-9FEE-4458-8700-74465A9EBCD2}
+	EndGlobalSection
+EndGlobal
