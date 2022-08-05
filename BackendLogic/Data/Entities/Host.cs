@@ -1,7 +1,7 @@
-﻿namespace HelperListPlanner.Data.Entities
+﻿namespace BackendLogic.Data.Entities
 {
     public class Host
-    {        
+    {
         string Name { get; set; }
         IPerson Accountable { get; set; }
         List<IPerson> Team { get; set; }
@@ -21,9 +21,9 @@
             Team.Add(teamMember);
         }
 
-        public void ScheduleEvent(Event scheduledEvent) 
+        public void ScheduleEvent(Event scheduledEvent)
         {
-            OpenEvents.Add(scheduledEvent);                        
+            OpenEvents.Add(scheduledEvent);
         }
 
         public void RefreshHostedEvents()
@@ -31,15 +31,15 @@
             List<Event> passedEvents = new();
             foreach (Event scheduledEvent in OpenEvents)
             {
-                if(scheduledEvent.EndTime.CompareTo(DateTime.Now) < 0)
+                if (scheduledEvent.EndTime.CompareTo(DateTime.Now) < 0)
                 {
                     passedEvents.Append(scheduledEvent);
                 }
             }
             foreach (Event passedEvent in passedEvents)
             {
-                this.HostedEvents.Add(passedEvent);
-                this.OpenEvents.Remove(passedEvent);
+                HostedEvents.Add(passedEvent);
+                OpenEvents.Remove(passedEvent);
             }
         }
     }

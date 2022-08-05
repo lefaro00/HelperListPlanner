@@ -1,4 +1,6 @@
-﻿namespace HelperListPlanner.Data.Entities
+﻿using BackendLogic.Data.ValueObjects;
+
+namespace BackendLogic.Data.Entities
 {
     public class Shift
     {
@@ -8,16 +10,16 @@
         ShiftType Type { get; }
         DateTime StartTime { get; set; }
         DateTime EndTime { get; set; }
-        int AmountHelpersNeeded { get => Helpers.Length; set => this.Helpers = ReinitializeHelpers(value, this.Helpers); }
+        int AmountHelpersNeeded { get => Helpers.Length; set => Helpers = ReinitializeHelpers(value, Helpers); }
 
         public Shift(string name, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)
         {
-            this.Name = name;
-            this.Description = description;
+            Name = name;
+            Description = description;
             Helpers = new Helper[amountHelpersNeeded];
-            this.Type = type;
-            this.StartTime = startTime;
-            this.EndTime = endTime;
+            Type = type;
+            StartTime = startTime;
+            EndTime = endTime;
         }
 
         public bool SignInHelper(Helper helper)

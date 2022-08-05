@@ -1,13 +1,16 @@
-﻿using HelperListPlanner.Data.Entities;
-namespace HelperListPlanner.Data.Controlling
+﻿using BackendLogic.Data.Entities;
+
+namespace BackendLogic.Data.Controlling
 {
     public static class EventCalender
     {
         public static List<Event> OpenEvents { get; } = new();
         public static List<Event> PassedEvents { get; } = new();
-        public static IEnumerable<Entities.Host> Hosts{ get 
-           {
-                List<Entities.Host> hosts = new();
+        public static IEnumerable<Host> Hosts
+        {
+            get
+            {
+                List<Host> hosts = new();
                 foreach (var _event in OpenEvents)
                 {
                     hosts.Add(_event.Host);
@@ -16,11 +19,13 @@ namespace HelperListPlanner.Data.Controlling
                 {
                     hosts.Add(_event.Host);
                 }
-                hosts = (List<Entities.Host>)hosts.Distinct();
+                hosts = (List<Host>)hosts.Distinct();
                 return hosts;
             }
         }
-        private static IEnumerable<Event> Events { get
+        private static IEnumerable<Event> Events
+        {
+            get
             {
                 List<Event> events = new();
                 events.AddRange(PassedEvents);
@@ -30,7 +35,7 @@ namespace HelperListPlanner.Data.Controlling
         }
         public static void EnterEvent(Event @event)
         {
-            if(@event.StartTime < DateTime.Now)
+            if (@event.StartTime < DateTime.Now)
             {
                 OpenEvents.Add(@event);
             }

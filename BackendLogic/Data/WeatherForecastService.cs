@@ -1,4 +1,4 @@
-namespace HelperListPlanner.Data
+namespace BackendLogic.Data
 {
     public class WeatherForecastService
     {

@@ -1,4 +1,4 @@
-﻿namespace HelperListPlanner.Data.Entities
+﻿namespace BackendLogic.Data.ValueObjects
 {
     public class ShiftType
     {

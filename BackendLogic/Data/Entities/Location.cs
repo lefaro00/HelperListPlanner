@@ -1,4 +1,4 @@
-﻿namespace HelperListPlanner.Data.Entities
+﻿namespace BackendLogic.Data.Entities
 {
     public class Location
     {
@@ -11,12 +11,12 @@
 
         public Location(Accountable contactPerson, string name, string street, string houseNumber, string city, int guestCapacity)
         {
-            this.ContactPerson = contactPerson;
-            this.Name = name;
-            this.Street = street;
-            this.HouseNumber = houseNumber;
-            this.City = city;
-            this.GuestCapacity = guestCapacity;
+            ContactPerson = contactPerson;
+            Name = name;
+            Street = street;
+            HouseNumber = houseNumber;
+            City = city;
+            GuestCapacity = guestCapacity;
         }
     }
 }
