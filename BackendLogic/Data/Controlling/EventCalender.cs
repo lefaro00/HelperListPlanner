@@ -40,7 +40,7 @@ namespace BackendLogic.Data.Controlling
                 }
             }
         }
-        public static IEnumerable<Event> GetEventsInMonth(Month month, Entities.Host host)
+        public static IEnumerable<Event> GetEventsInMonth(Month month, Entities.Host host = null)
         {
             List<Event> eventsInMonth = new();
             foreach (Event _event in Events)
