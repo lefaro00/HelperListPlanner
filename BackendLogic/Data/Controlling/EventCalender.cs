@@ -40,7 +40,21 @@ namespace BackendLogic.Data.Controlling
                 }
             }
         }
-        public static IEnumerable<Event> GetEventsInMonth(Month month, Entities.Host host = null)
+        
+        public static void ScheduleEvent(Event plannedEvent)
+        {
+            Hosts.Add(plannedEvent.Host);
+            if (plannedEvent.Passed)
+            {
+                PassedEvents.Add(plannedEvent);
+            }
+            else 
+            {
+                OpenEvents.Add(plannedEvent);
+            }
+        }
+
+        public static IEnumerable<Event> GetEventsInMonth(Month month, Entities.Host? host = null)
         {
             List<Event> eventsInMonth = new();
             foreach (Event _event in Events)
@@ -55,5 +69,6 @@ namespace BackendLogic.Data.Controlling
             }
             return eventsInMonth;
         }    
+
     }
 }

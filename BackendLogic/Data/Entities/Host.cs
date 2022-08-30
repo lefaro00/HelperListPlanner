@@ -18,12 +18,7 @@
         {
             Team.Add(teamMember);
         }
-
-        public void ScheduleEvent(Event scheduledEvent)
-        {
-            OpenEvents.Add(scheduledEvent);
-        }
-
+/*
         public void RefreshHostedEvents()
         {
             List<Event> passedEvents = new();
@@ -40,5 +35,6 @@
                 OpenEvents.Remove(passedEvent);
             }
         }
+*/
     }
 }

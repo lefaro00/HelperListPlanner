@@ -10,16 +10,9 @@ namespace BackendLogic.Data.Services
             return EventCalender.Hosts;
         }
 
-        public async Task<bool> ScheduleEvent(Host host, Event plannedEvent)
+        public async Task<bool> ScheduleEvent(Event plannedEvent)
         {
-            foreach (var _host in EventCalender.Hosts)
-            {
-                if (host == _host)
-                {
-                    _host.ScheduleEvent(plannedEvent);
-                    return true;
-                }
-            }
+            EventCalender.ScheduleEvent(plannedEvent)
             return false;
         }
 
