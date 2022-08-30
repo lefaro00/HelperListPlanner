@@ -3,7 +3,7 @@ using BackendLogic.Data.Controlling;
 
 namespace BackendLogic.Data.Services
 {
-    public class EventScheduleService
+    public class EventService
     {
         public async Task<IEnumerable<Host>> GetHosts()
         {

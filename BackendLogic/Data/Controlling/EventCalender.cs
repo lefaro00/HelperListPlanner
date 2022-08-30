@@ -5,6 +5,9 @@ namespace BackendLogic.Data.Controlling
     public static class EventCalender
     {
         public static List<Entities.Host> Hosts { get; set; } = new();
+
+        public static List<Entities.Location> Locations { get; set; } = new();
+
         public static List<Entities.Event> OpenEvents { get; set; } = new();
         public static List<Entities.Event> PassedEvents { get; set; } = new();
 
@@ -40,7 +43,6 @@ namespace BackendLogic.Data.Controlling
                 }
             }
         }
-        
         public static void ScheduleEvent(Event plannedEvent)
         {
             Hosts.Add(plannedEvent.Host);
