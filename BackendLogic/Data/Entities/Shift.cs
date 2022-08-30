@@ -4,7 +4,7 @@ namespace BackendLogic.Data.Entities
 {
     public class Shift
     {
-        string Name { get; set; }
+        Guid ShiftID { get; set; }
         string? Description { get; set; }
         Helper[] Helpers { get; set; }
         ShiftType Type { get; }
@@ -12,9 +12,9 @@ namespace BackendLogic.Data.Entities
         DateTime EndTime { get; set; }
         int AmountHelpersNeeded { get => Helpers.Length; set => Helpers = ReinitializeHelpers(value, Helpers); }
 
-        public Shift(string name, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)
+        public Shift(string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)
         {
-            Name = name;
+            ShiftID = new Guid();
             Description = description;
             Helpers = new Helper[amountHelpersNeeded];
             Type = type;

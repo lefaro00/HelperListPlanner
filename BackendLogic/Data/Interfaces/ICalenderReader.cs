@@ -9,13 +9,11 @@ namespace BackendLogic.Data.Services
 {
     internal interface ICalenderReader
     {
-        public Task<IEnumerable<Event>> GetEventsInMonth(Month month);
+        public Task<IEnumerable<Event>> GetEventsInMonth(Month month, Entities.Host host = null);
 
         public Task<IEnumerable<Entities.Host>> GetHosts();
 
         public Task<IEnumerable<Event>> GetLocations();
-
-        
 
     }
 }

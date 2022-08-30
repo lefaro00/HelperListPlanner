@@ -5,7 +5,7 @@
         string NickName { get; set; }
         public Helper(string nickName, string firstName, string? lastName, string eMail, string? phone)
         {
-            nickName = nickName;
+            NickName = nickName;
             FirstName = firstName;
             LastName = lastName;
             Email = eMail;
