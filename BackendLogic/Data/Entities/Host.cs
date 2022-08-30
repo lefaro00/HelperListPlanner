@@ -1,4 +1,6 @@
-﻿namespace BackendLogic.Data.Entities
+﻿using BackendLogic.Data.Interfaces;
+
+namespace BackendLogic.Data.Entities
 {
     public class Host
     {

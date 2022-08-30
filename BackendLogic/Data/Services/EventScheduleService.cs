@@ -12,10 +12,11 @@ namespace BackendLogic.Data.Services
 
         public async Task<bool> ScheduleEvent(Event plannedEvent)
         {
-            EventCalender.ScheduleEvent(plannedEvent)
+            EventCalender.ScheduleEvent(plannedEvent);
             return false;
         }
 
+        
 
 
     }
