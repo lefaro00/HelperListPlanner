@@ -15,6 +15,11 @@ namespace BackendLogic.Data.Services
             throw new NotImplementedException();
         }
 
+        public Task<Host> AlterHost(Host host, string name, Accountable accountable)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Accountable> CreateAccountable(string firstName, string lastName, string eMail, string phoneNumber)
         {
             var accountable = new Accountable(firstName, lastName, eMail, phoneNumber);

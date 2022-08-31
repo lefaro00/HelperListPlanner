@@ -16,5 +16,7 @@ namespace BackendLogic.Data.Interfaces
 
         public Task<Entities.Host> CreateHost(string name, Entities.Accountable accountable);
 
+        public Task<Entities.Host> AlterHost(Entities.Host host, string name, Entities.Accountable accountable);
+
     }
 }

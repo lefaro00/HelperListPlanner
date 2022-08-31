@@ -1,0 +1,24 @@
+﻿@page "/EventCalendar"
+<PageTitle>EventCalendar</PageTitle>
+
+<h1>Event Calendar</h1>
+     <div>
+         <button class="btn btn-primary" @onclick="CreateEvent_Clicked" hidden="@CreateEvent_Visible">
+             Event Erstellen
+         </button>
+         <div>
+             <div id="CreateEvent" hidden="@CreateEvent_Visible">
+                test
+             </div>
+         </div>
+     </div>
+
+@code {
+    private bool CreateEvent_Visible { get; set; } = false;
+
+    private void CreateEvent_Clicked()
+    {
+        CreateEvent_Visible = true;
+    }
+
+}
