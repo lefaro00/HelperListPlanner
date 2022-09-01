@@ -64,5 +64,6 @@ namespace BackendLogic.Data.Controlling
             return eventsInMonth;
         }    
 
+        
     }
 }

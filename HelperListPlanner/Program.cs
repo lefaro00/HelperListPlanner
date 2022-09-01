@@ -29,6 +29,8 @@ app.MapFallbackToPage("/_Host");
 
 app.Run();
 
+
+
 static void ConfigureServices(IServiceCollection services)
 {
     services.AddRazorPages();
