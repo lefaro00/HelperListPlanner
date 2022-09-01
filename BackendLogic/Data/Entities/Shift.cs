@@ -6,7 +6,7 @@ namespace BackendLogic.Data.Entities
     {
         public Guid ShiftID { get; set; }
         public string? Description { get; set; }
-        public Helper[] Helpers { get; set; }
+        public Helper[] Helpers { get; private set; }
         public ShiftType Type { get; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
@@ -24,12 +24,34 @@ namespace BackendLogic.Data.Entities
 
         public IEnumerable<Helper> SignInHelper(Helper helper)
         {
-
             for (int i = 0; i < AmountHelpersNeeded; i++)
             {
-                if (null == Helpers[i] || Helpers[i].HelperID != helper.HelperID)
+                if(Helpers[i] != null)
+                {
+                    if (Helpers[i].NickName == helper.NickName)
+                    {
+                        return Helpers;
+                    }
+                }
+            }
+            for (int i = 0; i < AmountHelpersNeeded; i++)
+            {
+                if (Helpers[i]== null)
                 {
                     Helpers[i] = helper;
+                    return Helpers;
+                }
+            }
+            return Helpers;
+        }
+
+        public IEnumerable<Helper> ResignHelper(Helper helper)
+        {
+            for(int i = 0; i < AmountHelpersNeeded; i++)
+            {
+                if (Helpers[i] == helper)
+                {
+                    Helpers[i] = null;
                 }
             }
             return Helpers;

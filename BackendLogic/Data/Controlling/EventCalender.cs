@@ -21,17 +21,7 @@ namespace BackendLogic.Data.Controlling
                 return events;
             }
         }
-        public static void EnterEvent(Event @event)
-        {
-            if (@event.StartTime < DateTime.Now)
-            {
-                OpenEvents.Add(@event);
-            }
-            else
-            {
-                PassedEvents.Add(@event);
-            }
-        }
+
         public static void DeleteEvent(Event _event, bool markAsCanceled)
         {
             if (markAsCanceled)
@@ -45,7 +35,10 @@ namespace BackendLogic.Data.Controlling
         }
         public static void ScheduleEvent(Event plannedEvent)
         {
-            Hosts.Add(plannedEvent.Host);
+            if (!(Hosts.Contains(plannedEvent.Host)))
+            {
+                Hosts.Add(plannedEvent.Host);
+            }
             if (plannedEvent.Passed)
             {
                 PassedEvents.Add(plannedEvent);

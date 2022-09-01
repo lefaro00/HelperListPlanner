@@ -1,8 +1,8 @@
 ﻿@page "/EventCalendar"
 
-@    using BackendLogic.Data.Services;
-@    using BackendLogic.Data.Entities;
-    using BackendLogic.Data.ValueObjects;
+@using BackendLogic.Data.Services;
+@using BackendLogic.Data.Entities;
+@using BackendLogic.Data.ValueObjects;
 @inject CalendarService calendarService;
 @inject EventEditorService eventEditorService;
 
@@ -14,17 +14,19 @@
          <button class="btn btn-primary" @onclick="CreateEvent_Clicked" hidden="@CreateEvent_Visible">
              Event Erstellen
          </button>
+         <button @onclick="CancelCreateEvent_Clicked" hidden=@CreateEvent_Hidden>Cancel</button>
          <div>
              <div id="CreateEvent" hidden="@CreateEvent_Hidden">
                 <CreateEvent></CreateEvent>
              </div>
+             <p>_________________________________________________</p>
          </div>
          
          <div>
              <label>Anstehende Events --- Havent had Time For UI Enter for Shift adds a Hardcoded Helper to the First shift in the first Event (Completely front end triggered)</label> 
         @foreach(BackendLogic.Data.Entities.Event _event in Events)
         {
-            <table>
+            <table style="border: 1px solid #0000">
             <th><label>"Event: @_event.Name"</label>  Host:"@_event.Host.Name", Location:"@_event.Location.Name", Start Time:"@_event.StartTime.ToString()", End Time:"@_event.EndTime"  </th>
             @foreach(Shift shift in _event.Shifts) {
                 <tr>
@@ -35,12 +37,13 @@
                 @foreach(Helper _helper in @shift.Helpers ){
                     @if(@_helper != null)
                     {
-                            <td>@_helper.NickName</td>
+                            <td>@_helper.NickName <button @onclick="OnShiftQuit">X</button></td>
                     }
                 }
                 </tr>
             }
             </table>
+            <p>_________________________________________________</p>
         }
     </div>
      </div>
@@ -48,6 +51,10 @@
 @code {
     private bool CreateEvent_Visible { get; set; } = false;
     private bool CreateEvent_Hidden { get => !CreateEvent_Visible; }
+
+    //Hardcoded helper because of Not enought time for ui Editor for helper
+    private Helper helper = new("lefaro", "Lennart", "Royl", "royl.lennart@stuv-karlsruhe.de", "1232131");
+
 
     private List<BackendLogic.Data.Entities.Event> Events = new();
 
@@ -63,12 +70,20 @@
 
     }
 
-    private async void OnShiftEnter()
+    private void CancelCreateEvent_Clicked()
+    {
+        CreateEvent_Visible = false;
+    }
+
+
+    private void OnShiftEnter()
     {   
-        
-        //Hardcoded helper because of Not enought time for ui
-        Helper helper = new("lefaro", "Lennart", "Royl", "royl.lennart@stuv-karlsruhe.de", "1232131");
-        await eventEditorService.EnterForShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
+        eventEditorService.SignIntoShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
+    }
+
+    private void OnShiftQuit()
+    {
+        eventEditorService.ResignFromShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
     }
 
 }

@@ -1,6 +1,4 @@
-﻿using BackendLogic.Data.ValueObjects;
-
-namespace BackendLogic.Data.Entities
+﻿namespace BackendLogic.Data.Entities
 {
     public class Event
     {
@@ -24,24 +22,42 @@ namespace BackendLogic.Data.Entities
             Location = location;
         }
 
-        public bool EnterInShift(Guid shiftID, Helper helper)
+        
+
+        public bool EnterInShift(Guid shiftID, ValueObjects.Helper helper)
         {
             foreach(var shift in Shifts)
             {
                 if(shiftID == shift.ShiftID)
                 {
-                    try
+                    var shiftHelpers = shift.Helpers;
+                    shift.SignInHelper(helper);
+                    if (shift.Helpers != shiftHelpers)
                     {
-                        shift.SignInHelper(helper);
                         return true;
                     }
-                    catch
-                    {
-                        return false;
-                    }                  
                 }
             }
             return false;
         }
+
+        public bool ResignFromShift(Guid shiftID, ValueObjects.Helper helper)
+        {
+            foreach (var shift in Shifts)
+            {
+                if (shiftID == shift.ShiftID)
+                {
+                    var shiftHelpers = shift.Helpers;
+                    shift.ResignHelper(helper);
+                    if (shift.Helpers != shiftHelpers)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        
     }
 }
