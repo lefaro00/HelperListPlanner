@@ -33,7 +33,6 @@ static void ConfigureServices(IServiceCollection services)
 {
     services.AddRazorPages();
     services.AddServerSideBlazor();
-    services.AddSingleton<WeatherForecastService>();
     services.AddSingleton<CalendarService>();
     services.AddSingleton<PersonService>();
     services.AddSingleton<EventEditorService>();
