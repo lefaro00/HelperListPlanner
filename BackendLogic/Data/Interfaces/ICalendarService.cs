@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackendLogic.Data.Interfaces
 {
-    internal interface ICalendarService
+    public interface ICalendarService
     {
         public Task<IEnumerable<Event>> GetEventsInMonth(Month month, Entities.Host? host = null);
 

@@ -8,7 +8,7 @@ using BackendLogic.Data.Interfaces;
 
 namespace BackendLogic.Data.Services
 {
-    internal class PersonService : IPersonService
+    public class PersonService : IPersonService
     {
         public Task<Helper> AlterHelper(Helper helper, string Nickname, string firstName, string lastName, string? eMail, string? phoneNumber)
         {

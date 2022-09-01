@@ -7,18 +7,19 @@
              Event Erstellen
          </button>
          <div>
-             <div id="CreateEvent" hidden="@CreateEvent_Visible">
-                test
+             <div id="CreateEvent" hidden="@CreateEvent_Hidden">
+                <CreateEvent></CreateEvent>
              </div>
          </div>
      </div>
 
 @code {
     private bool CreateEvent_Visible { get; set; } = false;
-
+    private bool CreateEvent_Hidden { get => !CreateEvent_Visible; }
     private void CreateEvent_Clicked()
     {
         CreateEvent_Visible = true;
+
     }
 
 }
