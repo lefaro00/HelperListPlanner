@@ -88,7 +88,7 @@
         Console.WriteLine("submit");
         Event @event = new Event(createEventModel.EventName, hosts[0], createEventModel.Description, EventStartTime, EventEndTime, shifts, location);
         calendarService.ScheduleEvent(@event);
-        
+
         createEventModel = new();
     }
 
@@ -101,6 +101,5 @@
             new Shift("Bier Bar", 2, new ShiftType("Bar","Bier ausgeben"), new DateTime(2023, 1, 20, 12, 30, 0), new DateTime(2023, 1, 20, 14, 30, 0))
         };
     }
-
 }
 

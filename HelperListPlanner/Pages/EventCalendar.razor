@@ -27,7 +27,7 @@
         @foreach(BackendLogic.Data.Entities.Event _event in Events)
         {
             <table style="border: 1px solid #0000">
-            <th><label>"Event: @_event.Name"</label>  Host:"@_event.Host.Name", Location:"@_event.Location.Name", Start Time:"@_event.StartTime.ToString()", End Time:"@_event.EndTime"  </th>
+            <th><label>"Event: @_event.Name"</label> Host:"@_event.Host.Name", Location:"@_event.Location.Name", Start Time:"@_event.StartTime.ToString()", End Time:"@_event.EndTime"  <button @onclick="CancelEvent_Clicked">Cancel Event</button></th>
             @foreach(Shift shift in _event.Shifts) {
                 <tr>
                 <label>Shift: @shift.Description</label>
@@ -73,8 +73,14 @@
     private void CancelCreateEvent_Clicked()
     {
         CreateEvent_Visible = false;
+        this.StateHasChanged();
     }
 
+    private void CancelEvent_Clicked()
+    {
+        calendarService.CancelEvent(Events[0]);
+        this.StateHasChanged();
+    }
 
     private void OnShiftEnter()
     {   

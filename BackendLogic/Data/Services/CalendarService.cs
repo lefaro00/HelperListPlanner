@@ -11,6 +11,17 @@ namespace BackendLogic.Data.Services
 {
     public class CalendarService: ICalendarService
     {
+        public async Task<bool> ScheduleEvent(Event plannedEvent)
+        {
+            EventCalender.ScheduleEvent(plannedEvent);
+            return false;
+        }
+
+        public async Task<bool> CancelEvent(Event plannedEvent)
+        {
+            return EventCalender.CancelEvent(plannedEvent);
+        }
+
         public async Task<IEnumerable<Event>> GetOpenEvents()
         {
             return EventCalender.OpenEvents;
@@ -49,12 +60,6 @@ namespace BackendLogic.Data.Services
             locations.Distinct();
             return locations;
 
-        }
-
-        public async Task<bool> ScheduleEvent(Event plannedEvent)
-        {
-            EventCalender.ScheduleEvent(plannedEvent);
-            return false;
         }
 
 

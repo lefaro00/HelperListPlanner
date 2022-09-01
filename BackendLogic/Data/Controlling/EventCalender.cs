@@ -22,16 +22,15 @@ namespace BackendLogic.Data.Controlling
             }
         }
 
-        public static void DeleteEvent(Event _event, bool markAsCanceled)
+        public static bool CancelEvent(Event _event)
         {
-            if (markAsCanceled)
+            var success = OpenEvents.Remove(_event);
+            if (!success)
             {
-                var success = OpenEvents.Remove(_event);
-                if (!success)
-                {
-                    PassedEvents.Remove(_event);
-                }
+                success = PassedEvents.Remove(_event);
             }
+            return success;
+            
         }
         public static void ScheduleEvent(Event plannedEvent)
         {
