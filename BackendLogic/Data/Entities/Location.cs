@@ -3,7 +3,7 @@
     public class Location
     {
         Accountable ContactPerson { get; set; }
-        string Name { get; set; }
+        public string Name { get; set; }
         string Street { get; }
         string HouseNumber { get; }
         string City { get; }

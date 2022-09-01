@@ -1,4 +1,5 @@
 ﻿using BackendLogic.Data.Interfaces;
+using BackendLogic.Data.ValueObjects;
 
 namespace BackendLogic.Data.Entities
 {

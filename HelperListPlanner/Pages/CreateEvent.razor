@@ -25,10 +25,10 @@
         <label>
             Select Host
             <p>
-                <InputSelect @bind-Value="createEventModel._Host">
-                @foreach(BackendLogic.Data.Entities.Host _host in hosts)
+                <InputSelect @bind-Value="createEventModel.EventHost">
+                @foreach(BackendLogic.Data.Entities.Host eventHost in hosts)
                 {
-                    <option value="@_host">@_host.Name</option>
+                    <option value="@eventHost">@eventHost.Name</option>
                 }
             </InputSelect>
             </p>
@@ -88,7 +88,7 @@
     private void HandleSubmit()
     {
         Console.WriteLine("submit");
-        Event @event = new Event(createEventModel.EventName, createEventModel._Host, createEventModel.Description, EventStartTime, EventEndTime, shifts, location);
+        Event @event = new Event(createEventModel.EventName, hosts[0], createEventModel.Description, EventStartTime, EventEndTime, shifts, location);
         calendarService.ScheduleEvent(@event);
         
         createEventModel = new();

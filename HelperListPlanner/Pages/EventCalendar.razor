@@ -1,4 +1,12 @@
 ﻿@page "/EventCalendar"
+
+@    using BackendLogic.Data.Services;
+@    using BackendLogic.Data.Entities;
+    using BackendLogic.Data.ValueObjects;
+@inject CalendarService calendarService;
+@inject EventEditorService eventEditorService;
+
+
 <PageTitle>EventCalendar</PageTitle>
 
 <h1>Event Calendar</h1>
@@ -11,15 +19,56 @@
                 <CreateEvent></CreateEvent>
              </div>
          </div>
+         
+         <div>
+             <label>Anstehende Events --- Havent had Time For UI Enter for Shift adds a Hardcoded Helper to the First shift in the first Event (Completely front end triggered)</label> 
+        @foreach(BackendLogic.Data.Entities.Event _event in Events)
+        {
+            <table>
+            <th><label>"Event: @_event.Name"</label>  Host:"@_event.Host.Name", Location:"@_event.Location.Name", Start Time:"@_event.StartTime.ToString()", End Time:"@_event.EndTime"  </th>
+            @foreach(Shift shift in _event.Shifts) {
+                <tr>
+                <label>Shift: @shift.Description</label>
+                <p>Start Time: @shift.StartTime.ToString(), End Time: @shift.EndTime.ToString()</p>
+                <p><button @onclick="OnShiftEnter">Enter for shift</button></p>
+                
+                @foreach(Helper _helper in @shift.Helpers ){
+                    @if(@_helper != null)
+                    {
+                            <td>@_helper.NickName</td>
+                    }
+                }
+                </tr>
+            }
+            </table>
+        }
+    </div>
      </div>
 
 @code {
     private bool CreateEvent_Visible { get; set; } = false;
     private bool CreateEvent_Hidden { get => !CreateEvent_Visible; }
+
+    private List<BackendLogic.Data.Entities.Event> Events = new();
+
+    protected override async void OnInitialized()
+    {
+        Events.AddRange(await calendarService.GetOpenEvents());
+        base.OnInitialized();
+    }
+
     private void CreateEvent_Clicked()
     {
         CreateEvent_Visible = true;
 
+    }
+
+    private async void OnShiftEnter()
+    {   
+        
+        //Hardcoded helper because of Not enought time for ui
+        Helper helper = new("lefaro", "Lennart", "Royl", "royl.lennart@stuv-karlsruhe.de", "1232131");
+        await eventEditorService.EnterForShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
     }
 
 }

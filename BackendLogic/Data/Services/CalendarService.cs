@@ -11,6 +11,11 @@ namespace BackendLogic.Data.Services
 {
     public class CalendarService: ICalendarService
     {
+        public async Task<IEnumerable<Event>> GetOpenEvents()
+        {
+            return EventCalender.OpenEvents;
+        }
+
         public async Task<IEnumerable<Event>> GetEventsByHost(Host host, bool includePassedEvents = false)
         {
             var events = EventCalender.OpenEvents;

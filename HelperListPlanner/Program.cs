@@ -36,4 +36,5 @@ static void ConfigureServices(IServiceCollection services)
     services.AddSingleton<WeatherForecastService>();
     services.AddSingleton<CalendarService>();
     services.AddSingleton<PersonService>();
+    services.AddSingleton<EventEditorService>();
 }

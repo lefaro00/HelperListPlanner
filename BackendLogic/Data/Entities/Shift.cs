@@ -4,13 +4,13 @@ namespace BackendLogic.Data.Entities
 {
     public class Shift
     {
-        Guid ShiftID { get; set; }
-        string? Description { get; set; }
-        Helper[] Helpers { get; set; }
-        ShiftType Type { get; }
-        DateTime StartTime { get; set; }
-        DateTime EndTime { get; set; }
-        int AmountHelpersNeeded { get => Helpers.Length; set => Helpers = ReinitializeHelpers(value, Helpers); }
+        public Guid ShiftID { get; set; }
+        public string? Description { get; set; }
+        public Helper[] Helpers { get; set; }
+        public ShiftType Type { get; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
+        public int AmountHelpersNeeded { get => Helpers.Length; set => Helpers = ReinitializeHelpers(value, Helpers); }
 
         public Shift(string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)
         {
@@ -22,20 +22,17 @@ namespace BackendLogic.Data.Entities
             EndTime = endTime;
         }
 
-        public bool SignInHelper(Helper helper)
+        public IEnumerable<Helper> SignInHelper(Helper helper)
         {
-            if (!Helpers.Contains(helper))
+
+            for (int i = 0; i < AmountHelpersNeeded; i++)
             {
-                for (int i = 0; i < AmountHelpersNeeded; i++)
+                if (null == Helpers[i] || Helpers[i].HelperID != helper.HelperID)
                 {
-                    if (Helpers[i] == null)
-                    {
-                        Helpers[i] = helper;
-                        return true;
-                    }
+                    Helpers[i] = helper;
                 }
             }
-            return false;
+            return Helpers;
         }
 
         private static Helper[] ReinitializeHelpers(int amountHelpersNeeded, Helper[] helpers)

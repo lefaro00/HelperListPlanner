@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackendLogic.Data.ValueObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace BackendLogic.Data.Interfaces
 {
     public interface IPersonService
     {
-        public Task<Entities.Helper> CreateHelper(string Nickname, string firstName, string lastName, string eMail, string? phoneNumber);
+        public Task<Helper> CreateHelper(string Nickname, string firstName, string lastName, string eMail, string? phoneNumber);
 
-        public Task<Entities.Helper> AlterHelper(Entities.Helper helper, string Nickname, string firstName, string lastName, string? eMail, string? phoneNumber); 
+        public Task<Helper> AlterHelper(Helper helper, string Nickname, string firstName, string lastName, string? eMail, string? phoneNumber); 
 
         public Task<Entities.Accountable> CreateAccountable(string firstName, string lastName, string eMail, string phoneNumber);
 

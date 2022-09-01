@@ -1,4 +1,5 @@
 ﻿using BackendLogic.Data.Entities;
+using BackendLogic.Data.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace BackendLogic.Data.Interfaces
         public Task AddShift(string name, string? description, int amountHelpersNeeded, ValueObjects.ShiftType type, DateTime startTime, DateTime endTime);
         public Task AlterShift(Guid shiftID, string name, string? description, int amountHelpersNeeded, ValueObjects.ShiftType type, DateTime startTime, DateTime endTime);
         public Task RemoveShift(Guid shiftID);
-        public Task EnterForShift(Guid shiftID, Helper helper);
+        public Task EnterForShift(Event _event, Guid shiftID, Helper helper);
     }
 }

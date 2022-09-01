@@ -9,6 +9,7 @@ namespace BackendLogic.Data.Interfaces
 {
     public interface ICalendarService
     {
+        public Task<IEnumerable<Event>> GetOpenEvents();
         public Task<IEnumerable<Event>> GetEventsInMonth(Month month, Entities.Host? host = null);
 
         public Task<IEnumerable<Event>> GetEventsByHost(Entities.Host host, bool includePassedEvents = false);

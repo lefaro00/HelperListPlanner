@@ -1,13 +1,15 @@
-﻿namespace BackendLogic.Data.Entities
+﻿using BackendLogic.Data.ValueObjects;
+
+namespace BackendLogic.Data.Entities
 {
     public class Event
     {
-        string Name { get; set; }
+        public string Name { get; set; }
         public Host Host { get; }
         string Description { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
-        List<Shift> Shifts { get; set; }
+        public List<Shift> Shifts { get; set; }
         public Location Location { get; set; }
         public bool Passed { get => (StartTime < DateTime.Now); }
 
@@ -20,6 +22,26 @@
             EndTime = endTime;
             Shifts = shifts;
             Location = location;
+        }
+
+        public bool EnterInShift(Guid shiftID, Helper helper)
+        {
+            foreach(var shift in Shifts)
+            {
+                if(shiftID == shift.ShiftID)
+                {
+                    try
+                    {
+                        shift.SignInHelper(helper);
+                        return true;
+                    }
+                    catch
+                    {
+                        return false;
+                    }                  
+                }
+            }
+            return false;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BackendLogic.Data.Entities;
 using BackendLogic.Data.Interfaces;
+using BackendLogic.Data.ValueObjects;
 
 namespace BackendLogic.Data.Services
 {
