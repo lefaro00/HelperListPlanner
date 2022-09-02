@@ -1,4 +1,5 @@
 ﻿using BackendLogic.Data.Entities;
+using BackendLogic.Data.ValueObjects;
 
 namespace BackendLogic.Data.Model
 {
@@ -21,7 +22,6 @@ namespace BackendLogic.Data.Model
                 return events;
             }
         }
-
         public static bool CancelEvent(Event _event)
         {
             var success = OpenEvents.Remove(_event);
@@ -47,7 +47,6 @@ namespace BackendLogic.Data.Model
                 OpenEvents.Add(plannedEvent);
             }
         }
-
         public static IEnumerable<Event> GetEventsInMonth(Month month, Entities.Host? host = null)
         {
             List<Event> eventsInMonth = new();
@@ -62,8 +61,30 @@ namespace BackendLogic.Data.Model
                 }
             }
             return eventsInMonth;
-        }    
+        }
 
-        
+        public static bool SignIntoShift(Event _event, Guid shiftID, Helper helper)
+        {
+            foreach (var openEvent in OpenEvents)
+            {
+                if (_event == openEvent)
+                {
+                    return openEvent.EnterInShift(shiftID, helper);
+                }
+            }
+            return false;
+        }
+
+        public static bool ResignFromShift(Event _event, Guid shiftID, Helper helper)
+        {
+            foreach (var openEvent in EventCalender.OpenEvents)
+            {
+                if (_event == openEvent)
+                {
+                    return openEvent.ResignFromShift(shiftID, helper);
+                }
+            }
+            return false;
+        }
     }
 }

@@ -29,26 +29,12 @@ namespace BackendLogic.Data.Services
 
         public async Task<bool> SignIntoShift(Event _event, Guid shiftID, Helper helper)
         {
-            foreach(var openEvent in EventCalender.OpenEvents)
-            {
-                if(_event == openEvent)
-                {
-                    return openEvent.EnterInShift(shiftID, helper);
-                }
-            }
-            return false;
+            return EventCalender.SignIntoShift(_event, shiftID, helper);
         }
 
         public async Task<bool> ResignFromShift(Event _event, Guid shiftID, Helper helper)
         {
-            foreach(var openEvent in EventCalender.OpenEvents)
-            {
-                if(_event == openEvent)
-                {
-                    return openEvent.ResignFromShift(shiftID, helper);
-                }
-            }
-            return false;
-        }
+            return EventCalender.ResignFromShift(_event, shiftID, helper);
+        }     
     }
 }
