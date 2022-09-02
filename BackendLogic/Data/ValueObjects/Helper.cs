@@ -1,4 +1,4 @@
-﻿using BackendLogic.Data.Interfaces;
+﻿using BackendLogic.Data.Factories;
 
 namespace BackendLogic.Data.ValueObjects
 {

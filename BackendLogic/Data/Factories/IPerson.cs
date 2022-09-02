@@ -1,4 +1,4 @@
-﻿namespace BackendLogic.Data.Interfaces
+﻿namespace BackendLogic.Data.Factories
 {
     public class IPerson
     {
