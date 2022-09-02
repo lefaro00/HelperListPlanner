@@ -1,5 +1,5 @@
 ﻿using BackendLogic.Data.Entities;
-using BackendLogic.Data.Controlling;
+using BackendLogic.Data.Model;
 using BackendLogic.Data.Interfaces;
 using BackendLogic.Data.ValueObjects;
 

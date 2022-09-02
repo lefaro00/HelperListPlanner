@@ -5,8 +5,8 @@ namespace BackendLogic.Data.Entities
 {
     public class Host
     {
-        public string Name { get; set; }
-        IPerson Accountable { get; set; }
+        public string Name { get; }
+        public IPerson Accountable { get; set; }
         List<IPerson> Team { get; set; }
 
 

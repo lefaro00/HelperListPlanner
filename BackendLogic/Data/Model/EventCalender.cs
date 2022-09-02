@@ -1,6 +1,6 @@
 ﻿using BackendLogic.Data.Entities;
 
-namespace BackendLogic.Data.Controlling
+namespace BackendLogic.Data.Model
 {
     public static class EventCalender
     {

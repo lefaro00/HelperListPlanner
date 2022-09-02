@@ -1,3 +1,8 @@
 Der Host schreibt ein Event in den Event Kalender, nicht anders herum
 
 Ob event passed in Event als lamda attribut, nicht im calender
+
+Refactoring
+	Alter Host -> ChangeHostAccountable
+
+	Removing unused Code from Hosed -> Team

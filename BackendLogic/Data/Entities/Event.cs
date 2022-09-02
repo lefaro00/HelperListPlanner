@@ -20,9 +20,7 @@
             EndTime = endTime;
             Shifts = shifts;
             Location = location;
-        }
-
-        
+        }        
 
         public bool EnterInShift(Guid shiftID, ValueObjects.Helper helper)
         {

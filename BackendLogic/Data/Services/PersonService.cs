@@ -6,19 +6,32 @@ using System.Threading.Tasks;
 using BackendLogic.Data.Entities;
 using BackendLogic.Data.Interfaces;
 using BackendLogic.Data.ValueObjects;
+using BackendLogic.Data.Model;
 
 namespace BackendLogic.Data.Services
 {
     public class PersonService : IPersonService
     {
-        public Task<Helper> AlterHelper(Helper helper, string Nickname, string firstName, string lastName, string? eMail, string? phoneNumber)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<Host> AlterHost(Host host, string name, Accountable accountable)
+        public async Task<Host?> ChangeHostAccountable(Host host, Accountable accountable)
         {
-            throw new NotImplementedException();
+            Host alteredHost = null;
+            foreach (Host _host in EventCalender.Hosts)
+            {
+                if(_host == host)
+                {
+                    _host.Accountable = accountable;
+                    alteredHost = _host;
+                }
+            }
+            foreach (Event _event in EventCalender.OpenEvents)
+            {
+                if (_event.Host == host)
+                {
+                    _event.Host.Accountable = accountable;
+                }
+            }
+            return alteredHost;
         }
 
         public async Task<Accountable> CreateAccountable(string firstName, string lastName, string eMail, string phoneNumber)
@@ -27,7 +40,7 @@ namespace BackendLogic.Data.Services
             return accountable;
         }
 
-        public async Task<Helper> CreateHelper(string nickname, string firstName, string lastName, string eMail, string? phoneNumber)
+        public async Task<Helper> CreateHelper(string nickname, string firstName, string lastName, string eMail, string phoneNumber)
         {
             var helper = new Helper(nickname, firstName, lastName, eMail, phoneNumber);
 
