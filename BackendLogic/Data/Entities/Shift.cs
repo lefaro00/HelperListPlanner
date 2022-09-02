@@ -24,13 +24,15 @@ namespace BackendLogic.Data.Entities
 
         public IEnumerable<Helper> SignInHelper(Helper helper)
         {
+            var returnVal = Helpers;
             for (int i = 0; i < AmountHelpersNeeded; i++)
             {
                 if(Helpers[i] != null)
                 {
                     if (Helpers[i].NickName == helper.NickName)
                     {
-                        return Helpers;
+                        returnVal = Helpers;
+                        return returnVal;
                     }
                 }
             }
@@ -39,10 +41,11 @@ namespace BackendLogic.Data.Entities
                 if (Helpers[i]== null)
                 {
                     Helpers[i] = helper;
-                    return Helpers;
+                    returnVal = Helpers;
+                    return returnVal;
                 }
             }
-            return Helpers;
+            return returnVal;
         }
 
         public IEnumerable<Helper> ResignHelper(Helper helper)
@@ -54,7 +57,8 @@ namespace BackendLogic.Data.Entities
                     Helpers[i] = null;
                 }
             }
-            return Helpers;
+            var returnVal = Helpers;
+            return returnVal;
         }
 
         private static Helper[] ReinitializeHelpers(int amountHelpersNeeded, Helper[] helpers)

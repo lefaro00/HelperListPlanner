@@ -12,7 +12,7 @@ namespace BackendLogic.Data.Interfaces
     {
         public Task Reschedule(Host host, Event _event, DateTime startTime, DateTime endTime);
         
-        public Task<bool> AddShift(string name, string? description, int amountHelpersNeeded, ValueObjects.ShiftType type, DateTime startTime, DateTime endTime);
+        public Task<bool> AddShift(Event _event, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime);
         public Task<bool> RemoveShift(Guid shiftID);
         public Task AlterShift(Guid shiftID, string name, string? description, int amountHelpersNeeded, ValueObjects.ShiftType type, DateTime startTime, DateTime endTime);
 

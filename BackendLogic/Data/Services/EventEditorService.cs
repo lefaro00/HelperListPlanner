@@ -12,9 +12,17 @@ namespace BackendLogic.Data.Services
             throw new NotImplementedException();
         }
 
-        public Task<bool> AddShift(string name, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)
+        public async Task<bool> AddShift(Event _event, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)
         {
-            throw new NotImplementedException();
+            foreach (Event @event in EventCalender.OpenEvents)
+            {
+                if (@event == _event)
+                {
+                    return @event.AddShift(new Shift(description, amountHelpersNeeded, type, startTime, endTime));
+                }
+            }
+            return false;
+            
         }
 
         public Task<bool> RemoveShift(Guid shiftID)

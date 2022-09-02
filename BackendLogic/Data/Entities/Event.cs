@@ -56,6 +56,36 @@
             return false;
         }
 
+        public bool Reschedule (DateTime startTime, DateTime endTime)
+        {
+            if(startTime <= endTime)
+            {
+                this.StartTime = startTime;
+                this.EndTime = endTime;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool AddShift(Shift shift)
+        {
+            foreach(var _shift in Shifts)
+            {
+                if( shift.StartTime             == _shift.StartTime     &&
+                    shift.EndTime               == _shift.EndTime       &&
+                    shift.Description           == _shift.Description   &&
+                    shift.Type                  == _shift.Type          &&
+                    shift.AmountHelpersNeeded   == _shift.AmountHelpersNeeded)
+                {
+                    return false;
+                }
+            }
+            Shifts.Add(shift);
+            return true;
+        }
         
     }
 }

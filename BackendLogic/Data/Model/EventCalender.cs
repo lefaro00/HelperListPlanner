@@ -47,6 +47,30 @@ namespace BackendLogic.Data.Model
                 OpenEvents.Add(plannedEvent);
             }
         }
+        public static bool RescheduleEvent(Event _event, DateTime startTime, DateTime endTime)
+        {
+            bool rescheduled = false;
+            Event? passedEvent = null;
+            foreach (var openEvent in OpenEvents)
+            {
+                if (_event == openEvent)
+                {
+                    rescheduled = openEvent.Reschedule(startTime, endTime);
+                    if (openEvent.Passed)
+                    {
+                        PassedEvents.Add(openEvent);
+                        passedEvent = openEvent;
+                    }
+                    break;
+                }
+            }
+            if(passedEvent != null)
+            {
+                OpenEvents.Remove(passedEvent);
+            }
+            return rescheduled;
+        }
+
         public static IEnumerable<Event> GetEventsInMonth(Month month, Entities.Host? host = null)
         {
             List<Event> eventsInMonth = new();
