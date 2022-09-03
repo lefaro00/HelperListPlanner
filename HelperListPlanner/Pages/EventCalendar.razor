@@ -4,7 +4,7 @@
 @using BackendLogic.Data.Entities;
 @using BackendLogic.Data.ValueObjects;
 @inject CalendarService calendarService;
-@inject EventEditorService eventEditorService;
+@inject EventEditorService _eventEditorService;
 
 
 <PageTitle>EventCalendar</PageTitle>
@@ -84,12 +84,12 @@
 
     private void OnShiftEnter()
     {   
-        eventEditorService.SignIntoShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
+        _eventEditorService.SignIntoShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
     }
 
     private void OnShiftQuit()
     {
-        eventEditorService.ResignFromShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
+        _eventEditorService.ResignFromShift(Events[0], Events[0].Shifts[0].ShiftID, helper);
     }
 
 }

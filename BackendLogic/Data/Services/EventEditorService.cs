@@ -5,11 +5,11 @@ using BackendLogic.Data.ValueObjects;
 
 namespace BackendLogic.Data.Services
 {
-    public class EventEditorService : IEventEditor
+    public class EventEditorService : IEventEditorService
     {
-        public Task Reschedule(Event _event, DateTime startTime, DateTime endTime)
+        public async Task<bool> Reschedule(Event _event, DateTime startTime, DateTime endTime)
         {
-            EventCalender.RescheduleEvent(_event, startTime, endTime);
+            return EventCalender.RescheduleEvent(_event, startTime, endTime);
         }
 
         public async Task<bool> AddShift(Event _event, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)

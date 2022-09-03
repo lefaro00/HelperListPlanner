@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace BackendLogic.Data.Interfaces
 {
-    internal interface IEventEditor
+    internal interface IEventEditorService
     {
-        public Task Reschedule(Event _event, DateTime startTime, DateTime endTime);
+        public Task<bool> Reschedule(Event _event, DateTime startTime, DateTime endTime);
         
         public Task<bool> AddShift(Event _event, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime);
         public Task<bool> RemoveShift(Guid shiftID);
