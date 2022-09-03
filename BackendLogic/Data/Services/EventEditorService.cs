@@ -7,9 +7,9 @@ namespace BackendLogic.Data.Services
 {
     public class EventEditorService : IEventEditor
     {
-        public Task Reschedule(Host host, Event _event, DateTime startTime, DateTime endTime)
+        public Task Reschedule(Event _event, DateTime startTime, DateTime endTime)
         {
-            throw new NotImplementedException();
+            EventCalender.RescheduleEvent(_event, startTime, endTime);
         }
 
         public async Task<bool> AddShift(Event _event, string? description, int amountHelpersNeeded, ShiftType type, DateTime startTime, DateTime endTime)

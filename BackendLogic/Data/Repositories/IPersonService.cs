@@ -9,13 +9,12 @@ namespace BackendLogic.Data.Interfaces
 {
     public interface IPersonService
     {
-        public Task<Helper> CreateHelper(string nickname, string firstName, string lastName, string eMail, string phoneNumber="");
-
         public Task<Entities.Accountable> CreateAccountable(string firstName, string lastName, string eMail, string phoneNumber);
 
         public Task<Entities.Host> CreateHost(string name, Entities.Accountable accountable);
 
         public Task<Entities.Host?> ChangeHostAccountable(Entities.Host host, Entities.Accountable accountable);
 
+        public Task<Helper> CreateHelper(string nickname, string firstName, string lastName, string eMail, string phoneNumber = "");
     }
 }
