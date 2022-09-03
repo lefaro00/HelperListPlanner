@@ -6,7 +6,7 @@ namespace BackendLogic.Data.Entities
     public class Host
     {
         public string Name { get; }
-        public IPerson Accountable { get; set; }
+        public IPerson Accountable { get; private set; }
         List<IPerson> Team { get; set; }
 
 
@@ -20,6 +20,11 @@ namespace BackendLogic.Data.Entities
         public void AddTeamMember(Helper teamMember)
         {
             Team.Add(teamMember);
+        }
+
+        public void ChangeAccountable(Accountable accountable)
+        {
+            this.Accountable = accountable;
         }
 /*
         public void RefreshHostedEvents()

@@ -2,10 +2,10 @@
 {
     public class IPerson
     {
-        public string? LastName { get; set; }
-        public string FirstName { get; set; }
-        public string? PhoneNumber { get; set; }
-        public string Email { get; set; }
+        public string? LastName { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string? PhoneNumber { get; protected set; }
+        public string Email { get; protected set; }
 
     }
 }

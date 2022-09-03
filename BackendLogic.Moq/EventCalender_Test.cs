@@ -1,6 +1,6 @@
 
 using Moq;
-using BackendLogic.Data.Services;
+using BackendLogic.Data.Entities;
 using BackendLogic.Data.Model;
 
 namespace BackendLogic.Moq
@@ -29,7 +29,7 @@ namespace BackendLogic.Moq
         public void CancelEvent_ShouldRemoveTheEventFromEvents()
         {
             //Arrange
-            Mock<BackendLogic.Data.Entities.Event> eventMock = new Mock<Data.Entities.Event>(null, null, null, null, null, null, null);
+            Mock<BackendLogic.Data.Entities.Event> eventMock = new(null, null, null, null, null, null, null);
             EventCalender.OpenEvents.Add(eventMock.Object);
 
             //Act
@@ -39,5 +39,24 @@ namespace BackendLogic.Moq
             Assert.IsFalse(EventCalender.OpenEvents.Contains(eventMock.Object));
         }
 
+        [TestMethod]
+        public void RescheduleEvent_ShouldReturnTrueRescheduleTheEventAndMoveItToPassedEvents()
+        {
+            //Arrange
+            DateTime passedStartTime = new(2020, 01, 20, 20, 0, 0);
+            DateTime passedEndTime = new(2020, 01, 20, 23, 59, 59);
+            Mock<BackendLogic.Data.Entities.Event> eventMock = new(null, null, null, null, null, null, null);
+            EventCalender.OpenEvents.Add(eventMock.Object);
+
+            //Act
+            var success = EventCalender.RescheduleEvent(eventMock.Object, passedStartTime, passedEndTime);
+
+            //Assert
+            Assert.IsTrue(success);
+            Assert.IsFalse(EventCalender.OpenEvents.Contains(eventMock.Object));
+            Assert.IsTrue(EventCalender.PassedEvents.Contains(eventMock.Object));
+
+
+        }
     }
 }

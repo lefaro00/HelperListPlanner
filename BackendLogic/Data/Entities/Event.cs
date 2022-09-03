@@ -87,5 +87,19 @@
             return true;
         }
         
+        public bool RemoveShift(Shift shift)
+        {
+            foreach (var _shift in Shifts)
+            {
+                if (shift == _shift)
+                {
+                    Shifts.Remove(shift);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }

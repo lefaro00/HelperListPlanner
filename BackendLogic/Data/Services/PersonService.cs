@@ -20,7 +20,7 @@ namespace BackendLogic.Data.Services
             {
                 if(_host == host)
                 {
-                    _host.Accountable = accountable;
+                    _host.ChangeAccountable(accountable);
                     alteredHost = _host;
                 }
             }
@@ -28,7 +28,7 @@ namespace BackendLogic.Data.Services
             {
                 if (_event.Host == host)
                 {
-                    _event.Host.Accountable = accountable;
+                    _event.Host.ChangeAccountable(accountable);
                 }
             }
             return alteredHost;
